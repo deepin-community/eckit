@@ -1,5 +1,6 @@
-template-repository (1.0-1) unstable; urgency=medium
+eckit (1.27.0-0deepin1) unstable; urgency=medium
+  
+  * sync with upstream 1.27.0
+  * patch some tests
 
-  * Initial release
-
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Alphagocc <alphagocc@163.com>  Sat, 21 Sep 2024 12:21:45 +0800

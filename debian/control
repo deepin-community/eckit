@@ -1,15 +1,93 @@
-Source: template-repository
-Section: unknown
+Source: eckit
+Section: science
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
+Maintainer: Alphagocc <alphagocc@163.com>
+Uploaders: Alphagocc <alphagocc@163.com>
+Build-Depends: debhelper (> 11), 
+  architecture-is-64-bit,
+  dh-buildinfo, 
+  ecbuild (>= 3.6.1-1~),
+  chrpath,
+  flex,
+  bison,
+  libopenblas-dev [ !ia64 !alpha !hurd-amd64 ],
+  libblas-dev [ !amd64 !arm64 !mips64el !ppc64el !s390x !ppc64 !riscv64],
+  liblapack-dev [ !amd64 !arm64 !mips64el !ppc64el !s390x !ppc64 !riscv64],
+  libaec-dev,
+  libxxhash-dev,
+  libjemalloc-dev,
+  librados-dev [ !loong64 !ppc64 !sparc64 !riscv64],
+  libradospp-dev [ !loong64 !ppc64 !sparc64 !riscv64],
+  libbz2-dev,
+  liblz4-dev,
+  libeigen3-dev,
+  libsnappy-dev,
+  librsync-dev,
+  mpi-default-dev,
+  doxygen,
+  python3-all,
+  libssl-dev,
+  libcurl4-gnutls-dev (>=  7.20),
+  libncurses-dev
 Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Homepage: https://github.com/ecmwf/eckit
+Vcs-Git: https://github.com/deepin-community/eckit.git
 
-Package: template-repository
+Package: libeckit-dev
+Section: libdevel
 Architecture: any
+Multi-Arch: same
+Depends: libeckit0d (= ${binary:Version}), libeckit-utils (= ${binary:Version}),
+  mpi-default-dev,
+  libaec-dev,
+  libssl-dev,
+  libcurl4-gnutls-dev,
+  libxxhash-dev,
+  libjemalloc-dev,
+  libsnappy-dev,
+  liblz4-dev,
+  libbz2-dev,
+  libeigen3-dev,
+  libopenblas-dev [ amd64 arm64 mips64el ppc64el s390x ppc64 riscv64],
+  libblas-dev [ !amd64 !arm64 !mips64el !ppc64el !s390x !ppc64 !riscv64],
+  liblapack-dev [ !amd64 !arm64 !mips64el !ppc64el !s390x !ppc64 !riscv64],
+  ${shlibs:Depends}, ${misc:Depends}
+Description: C++ toolkit for ECMWF tools and applications
+ ecKit is a cross-platform c++ toolkit that supports development of tools and
+ applications at ECMWF. It is based on code developed over the last 20 years
+ within the MARS software and was re-factored out to be reused by other
+ applications. The main focus is UNIX/POSIX systems, and it has been thoroughly
+ tested on AIX, Linux and Mac OSX. Historically, the code base pre-dates and in
+ some way can be seen as a leaner substitute for some 'Boost' libraries.
+ .
+ ECMWF is the European Centre for Medium-Range Weather Forecasts.
+
+Package: libeckit0d
+Section: libs
+Architecture: any
+Multi-Arch: same
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Description: C++ toolkit for ECMWF tools and applications
+ ecKit is a cross-platform c++ toolkit that supports development of tools and
+ applications at ECMWF. It is based on code developed over the last 20 years
+ within the MARS software and was re-factored out to be reused by other
+ applications. The main focus is UNIX/POSIX systems, and it has been thoroughly
+ tested on AIX, Linux and Mac OSX. Historically, the code base pre-dates and in
+ some way can be seen as a leaner substitute for some 'Boost' libraries.
+ .
+ ECMWF is the European Centre for Medium-Range Weather Forecasts.
+
+Package: libeckit-utils
+Architecture: any
+Multi-Arch: foreign
+Depends: ${misc:Depends}, libeckit0d ( = ${binary:Version}),  ${shlibs:Depends}
+Recommends: libeckit-dev
+Description: C++ toolkit for ECMWF tools and applications - development files
+ ecKit is a cross-platform c++ toolkit that supports development of tools and
+ applications at ECMWF. It is based on code developed over the last 20 years
+ within the MARS software and was re-factored out to be reused by other
+ applications. The main focus is UNIX/POSIX systems, and it has been thoroughly
+ tested on AIX, Linux and Mac OSX. Historically, the code base pre-dates and in
+ some way can be seen as a leaner substitute for some 'Boost' libraries.
+ .
+ ECMWF is the European Centre for Medium-Range Weather Forecasts.

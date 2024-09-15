@@ -1,4 +1,7 @@
 #!/usr/bin/make -f
 
+# Test suite requires 4 processors. Fake it
+export OMPI_MCA_rmaps_base_oversubscribe=1
+
 %:
 	dh $@
