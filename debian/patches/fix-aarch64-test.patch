@@ -1,0 +1,48 @@
+Description: Fix strange aarch64 return value of strcmp
+Author: Alphagocc <alphagocc@163.com>
+Last-Update: 2024-09-21
+
+--- a/tests/value/test_value_string.cc
++++ b/tests/value/test_value_string.cc
+@@ -190,8 +190,8 @@ CASE("Ensure a well defined ordering of strings with other Values()") {
+     EXPECT(val1.compare(val2) == 0);
+     EXPECT(val2.compare(val1) == 0);
+ 
+-    EXPECT(val1.compare(val3) == -1);
+-    EXPECT(val3.compare(val1) == 1);
++    EXPECT(val1.compare(val3) < 0);
++    EXPECT(val3.compare(val1) > 0);
+ 
+     // Check comparisons with other types of data (see test_value_typeordering).
+ 
+
+--- a/tests/value/test_value_typeordering.cc
++++ b/tests/value/test_value_typeordering.cc
+@@ -73,11 +73,11 @@ CASE("Every type compares correctly against every other type") {
+ 
+                 EXPECT(values[i] < values[j]);
+                 EXPECT(!(values[i] >= values[j]));
+-                EXPECT(values[i].compare(values[j]) == -1);
++                EXPECT(values[i].compare(values[j]) < 0);
+ 
+                 EXPECT(values[j] >= values[i]);
+                 EXPECT(!(values[j] < values[i]));
+-                EXPECT(values[j].compare(values[i]) == 1);
++                EXPECT(values[j].compare(values[i]) > 0);
+ 
+                 sanity_check++;
+             }
+@@ -123,11 +123,11 @@ CASE("Every type compares correctly against every other type") {
+ 
+                 EXPECT(values[i] > values[j]);
+                 EXPECT(!(values[i] <= values[j]));
+-                EXPECT(values[i].compare(values[j]) == 1);
++                EXPECT(values[i].compare(values[j]) > 0);
+ 
+                 EXPECT(values[j] <= values[i]);
+                 EXPECT(!(values[j] > values[i]));
+-                EXPECT(values[j].compare(values[i]) == -1);
++                EXPECT(values[j].compare(values[i]) < 0);
+ 
+                 sanity_check++;
+             }
