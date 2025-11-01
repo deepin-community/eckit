@@ -1,0 +1,5 @@
+tests/utils/2t_sfc.grib
+tests/utils/2t_sfc_regrid.grib
+tests/utils/u-v_6ml.grib
+tests/utils/q_6ml_regrid.grib
+tests/utils/vo-d_6ml.grib

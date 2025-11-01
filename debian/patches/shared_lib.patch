@@ -1,0 +1,132 @@
+Description: Add versioning to the shared libraries
+Author: Alastair McKinstry <mckinstry@debian.org>
+Last-Updated: 2025-01-13
+Forwarded: no
+
+--- a/src/eckit/cmd/CMakeLists.txt
++++ b/src/eckit/cmd/CMakeLists.txt
+@@ -83,6 +83,7 @@ endif()
+ 
+ ecbuild_add_library( TARGET             eckit_cmd TYPE SHARED
+                      INSTALL_HEADERS    LISTED
++                     VERSION            0d
+                      SOURCES            ${eckit_cmd_srcs}
+                      HEADER_DESTINATION ${INSTALL_INCLUDE_DIR}/eckit/cmd
+                      PRIVATE_INCLUDES   ${CURSES_INCLUDE_DIR}
+--- a/src/eckit/geometry/CMakeLists.txt
++++ b/src/eckit/geometry/CMakeLists.txt
+@@ -28,6 +28,8 @@ ecbuild_add_library(
+ 					HEADER_DESTINATION
+ 						${INSTALL_INCLUDE_DIR}/eckit/geometry
+ 					SOURCES
+-						${eckit_geometry_srcs}
++					        ${eckit_geometry_srcs}
++				        VERSION
++					        0d	 
+ 					PUBLIC_LIBS
+ 						eckit  )
+--- a/src/eckit/linalg/CMakeLists.txt
++++ b/src/eckit/linalg/CMakeLists.txt
+@@ -83,6 +83,7 @@ endif()
+ 
+ ecbuild_add_library( TARGET             eckit_linalg TYPE SHARED
+                      INSTALL_HEADERS    ALL
++                     VERSION            0d
+                      HEADER_DESTINATION ${INSTALL_INCLUDE_DIR}/eckit/linalg
+                      SOURCES            ${eckit_la_srcs}
+                      PRIVATE_INCLUDES   ${eckit_la_pincludes}
+--- a/src/eckit/maths/CMakeLists.txt
++++ b/src/eckit/maths/CMakeLists.txt
+@@ -18,6 +18,7 @@ ecbuild_add_library(
+     TARGET             eckit_maths
+     TYPE               SHARED
+     INSTALL_HEADERS    ALL
++    VERSION            0d
+     HEADER_DESTINATION ${INSTALL_INCLUDE_DIR}/eckit/maths
+     SOURCES            ${eckit_maths_sources}
+     PRIVATE_LIBS       ${eckit_maths_private_libs}
+--- a/src/eckit/option/CMakeLists.txt
++++ b/src/eckit/option/CMakeLists.txt
+@@ -23,6 +23,8 @@ ecbuild_add_library( TARGET eckit_option
+         EckitTool.cc
+         EckitTool.h
+ 
++    VERSION
++	0d
+     TEMPLATES
+         FactoryOption.cc
+         VectorOption.cc
+--- a/src/eckit/web/CMakeLists.txt
++++ b/src/eckit/web/CMakeLists.txt
+@@ -41,7 +41,8 @@ Url.h)
+ ecbuild_add_library( TARGET eckit_web TYPE SHARED
+ 					 INSTALL_HEADERS LISTED
+ 					 SOURCES
+-						${eckit_web_srcs}
++					 ${eckit_web_srcs}
++					 VERSION 0d
+ 					 PERSISTENT
+ 						HtmlObject.h
+ 					 HEADER_DESTINATION
+--- a/src/eckit/CMakeLists.txt
++++ b/src/eckit/CMakeLists.txt
+@@ -914,6 +914,8 @@ ecbuild_add_library(
+           SOURCES
+               ${eckit_srcs}
+ 
++	   VERSION                                0d
++						  
+           TEMPLATES
+               ${eckit_templates}
+ 
+--- a/src/eckit/mpi/CMakeLists.txt
++++ b/src/eckit/mpi/CMakeLists.txt
+@@ -43,6 +43,8 @@ ecbuild_add_library( TARGET eckit_mpi TY
+                      INSTALL_HEADERS ALL
+                      HEADER_DESTINATION
+                          ${INSTALL_INCLUDE_DIR}/eckit/mpi
++	             VERSION
++		         0d     
+                      SOURCES
+                          ${eckit_mpi_srcs}
+                      DEFINITIONS
+--- a/src/eckit/sql/CMakeLists.txt
++++ b/src/eckit/sql/CMakeLists.txt
+@@ -173,6 +173,7 @@ ecbuild_add_library( TARGET
+                      INSTALL_HEADERS     ALL
+                      HEADER_DESTINATION  ${INSTALL_INCLUDE_DIR}/eckit/sql
+                      SOURCES             ${eckit_sql_lib_srcs}
++		     VERSION             0d
+                      TEMPLATES
+                                          SQLIteratorOutput.cc
+                                          expression/ShiftedColumnExpression.cc
+--- a/src/eckit/distributed/CMakeLists.txt
++++ b/src/eckit/distributed/CMakeLists.txt
+@@ -28,7 +28,8 @@ if( HAVE_MPI )
+ endif()
+ 
+ ecbuild_add_library( TARGET eckit_distributed TYPE SHARED
+-                     INSTALL_HEADERS ALL
++  INSTALL_HEADERS ALL
++  VERSION 0d
+                      HEADER_DESTINATION
+                          ${INSTALL_INCLUDE_DIR}/eckit/distributed
+                      SOURCES
+--- a/src/eckit/codec/CMakeLists.txt
++++ b/src/eckit/codec/CMakeLists.txt
+@@ -11,6 +11,7 @@ ecbuild_add_library(
+     INSTALL_HEADERS    ALL
+     HEADER_DESTINATION ${INSTALL_INCLUDE_DIR}/eckit/codec
+     PUBLIC_LIBS        eckit
++    VERSION            0d
+     PUBLIC_INCLUDES
+       $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src>
+       $<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/src>
+--- a/src/eckit/geo/CMakeLists.txt
++++ b/src/eckit/geo/CMakeLists.txt
+@@ -183,4 +183,5 @@ ecbuild_add_library(
+     PUBLIC_LIBS        ${eckit_geo_libs}
+     PUBLIC_INCLUDES    ${eckit_geo_include_dirs}
+     SOURCES            ${eckit_geo_srcs}
++    VERSION	       0d
+ )
