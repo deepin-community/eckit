@@ -1,0 +1,4 @@
+/usr/include/*		/usr/include/${DEB_HOST_MULTIARCH}
+/usr/lib/*/pkgconfig/*
+/usr/lib/*/cmake/eckit/*
+/usr/lib/*/lib*.so

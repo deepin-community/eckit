@@ -1,0 +1,16 @@
+Description: Fix to enable FindRADOS.cmake to work
+Author: Alastair McKinstry <mckinstry@debian.org>
+Last-Updated: 2025-02-25
+Forwarded: no
+
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -111,7 +111,7 @@ endif()
+ ecbuild_add_option( FEATURE RADOS
+                     DEFAULT OFF
+                     DESCRIPTION "Ceph/Rados storage support"
+-                    REQUIRED_PACKAGES Rados )
++                    REQUIRED_PACKAGES RADOS )
+ 
+ ### Armadillo
+

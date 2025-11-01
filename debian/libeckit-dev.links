@@ -1,0 +1,10 @@
+/usr/lib/${DEB_HOST_MULTIARCH}/libeckit_cmd.so.0d  /usr/lib/${DEB_HOST_MULTIARCH}/libeckit_cmd.so
+/usr/lib/${DEB_HOST_MULTIARCH}/libeckit_mpi.so.0d  /usr/lib/${DEB_HOST_MULTIARCH}/libeckit_mpi.so
+/usr/lib/${DEB_HOST_MULTIARCH}/libeckit_geometry.so.0d  /usr/lib/${DEB_HOST_MULTIARCH}/libeckit_geometry.so
+/usr/lib/${DEB_HOST_MULTIARCH}/libeckit_option.so.0d  /usr/lib/${DEB_HOST_MULTIARCH}/libeckit_option.so
+/usr/lib/${DEB_HOST_MULTIARCH}/libeckit_web.so.0d  /usr/lib/${DEB_HOST_MULTIARCH}/libeckit_web.so
+/usr/lib/${DEB_HOST_MULTIARCH}/libeckit_linalg.so.0d  /usr/lib/${DEB_HOST_MULTIARCH}/libeckit_linalg.so
+/usr/lib/${DEB_HOST_MULTIARCH}/libeckit_sql.so.0d  /usr/lib/${DEB_HOST_MULTIARCH}/libeckit_sql.so
+/usr/lib/${DEB_HOST_MULTIARCH}/libeckit_maths.so.0d  /usr/lib/${DEB_HOST_MULTIARCH}/libeckit_maths.so
+/usr/lib/${DEB_HOST_MULTIARCH}/libeckit_distributed.so.0d  /usr/lib/${DEB_HOST_MULTIARCH}/libeckit_distributed.so
+/usr/lib/${DEB_HOST_MULTIARCH}/libeckit.so.0d  /usr/lib/${DEB_HOST_MULTIARCH}/libeckit.so

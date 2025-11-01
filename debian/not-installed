@@ -1,0 +1,15 @@
+usr/lib/libeckit_cmd.so
+usr/lib/libeckit_codec.so
+usr/lib/libeckit_geometry.so
+usr/lib/libeckit_option.so
+usr/lib/libeckit_web.so
+usr/lib/libeckit_sql.so
+usr/lib/libeckit_linalg.so
+usr/lib/libeckit.so
+usr/lib/libeckit_mpi.so
+usr/lib/libeckit_maths.so
+usr/lib/cmake/eckit/eckit-config-version.cmake
+usr/lib/cmake/eckit/eckit-config.cmake.tpls
+usr/lib/cmake/eckit/eckit-targets.cmake
+usr/lib/cmake/eckit/eckit-config.cmake
+usr/lib/cmake/eckit/eckit-targets-none.cmake

@@ -1,2 +1,5 @@
+shared_lib.patch
 test_syslog.patch
 fix-aarch64-test.patch
+no-download.patch
+rados.patch

@@ -1,0 +1,6 @@
+# Simple check on libs and dependencies being present
+
+Test-Command: set -e
+  ; eckit-version --help 2> /dev/null
+Depends: libeckit-utils
+Restrictions: superficial

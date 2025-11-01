@@ -1,7 +1,58 @@
 #!/usr/bin/make -f
 
+
+# TODO:
+#   - Flang version doesn't build. 
+
+export DH_VERBOSE=1
+
+DO_TEST:=true
+
+include /usr/share/dpkg/pkg-info.mk
+DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
+TMPDIR:=$(CURDIR)/debian/tmp
+LIBDIR:=/usr/lib/$(DEB_HOST_MULTIARCH)
 # Test suite requires 4 processors. Fake it
 export OMPI_MCA_rmaps_base_oversubscribe=1
 
+
+# JEMALLOC Turned off as it breaks magics-python currently (TLS space)
+
+BUILD_FLAGS = \ -DCMAKE_MODULE_PATH=/usr/share/ecbuild/cmake \
+	-DENABLE_RSYNC=On \
+	-DENABLE_CONVEX_HULL=On \
+	-DENABLE_SSL=On \
+	-DENABLE_ECKIT_GEO=On \
+	# -DENABLE_RADOS=On # This should be enabled after Rados is updated
+	-DENABLE_PROJ=On \
+	-DENABLE_OMP=On \
+	-DENABLE_JEMALLOC=Off
+
 %:
-	dh $@
+	dh $@ --buildsystem=cmake
+
+override_dh_auto_clean:
+	dh_auto_clean
+	rm -rf debian/build-*
+
+override_dh_auto_configure:
+	dh_auto_configure --  ${BUILD_FLAGS} 
+
+override_dh_auto_test:
+	$(DO_TEST) && ( LD_LIBRARY_PATH=$(CURDIR)/debian/build/lib dh_auto_test  ) || true
+
+override_dh_auto_install:
+	dh_auto_install
+	chrpath -d debian/tmp/usr/lib/*/*.so.0d
+	# Fixup cmake files. Hack. can we do better with patches to upstream ?
+	sed -i -e 's%/usr/bin/python %/usr/bin/python3 %g' $(TMPDIR)/$(LIBDIR)/cmake/eckit/eckit-import.cmake
+	sed -i -e 's%/usr/lib/cmake%${LIBDIR}/cmake%g' $(TMPDIR)/$(LIBDIR)/cmake/eckit/eckit-config.cmake
+	sed -i -e 's%$${PACKAGE_PREFIX_DIR}/lib/cmake%${LIBDIR}/cmake%g' $(TMPDIR)/$(LIBDIR)/cmake/eckit/eckit-config.cmake
+	sed -i -e 's%$${_IMPORT_PREFIX}/bin%/usr/bin%g'  $(TMPDIR)/$(LIBDIR)/cmake/eckit/eckit-targets-none.cmake
+	sed -i -e 's%$${_IMPORT_PREFIX}/lib/libeckit%${LIBDIR}/libeckit%g'  $(TMPDIR)/$(LIBDIR)/cmake/eckit/eckit-targets-none.cmake
+	sed -i -e 's%/usr/lib/cmake%${LIBDIR}/cmake%g'  $(TMPDIR)/$(LIBDIR)/cmake/eckit/eckit-targets.cmake
+	sed -i -e 's%$${_IMPORT_PREFIX}/lib/libeckit%${LIBDIR}/libeckit%g' $(TMPDIR)/$(LIBDIR)/cmake/eckit/eckit-targets.cmake
+	sed -i -e 's%$${_IMPORT_PREFIX}/include%/usr/include/${DEB_HOST_MULTIARCH}%g' $(TMPDIR)/$(LIBDIR)/cmake/eckit/eckit-targets.cmake
+	sed -i -e 's%$${_IMPORT_PREFIX}/module%${MODULEDIR}%g' $(TMPDIR)/$(LIBDIR)/cmake/eckit/eckit-targets.cmake
+	chmod -x $(TMPDIR)/$(LIBDIR)/cmake/eckit/*
