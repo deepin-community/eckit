@@ -1,3 +1,4 @@
+#! /usr/bin/dh-exec
 /usr/lib/${DEB_HOST_MULTIARCH}/libeckit_cmd.so.0d  /usr/lib/${DEB_HOST_MULTIARCH}/libeckit_cmd.so
 /usr/lib/${DEB_HOST_MULTIARCH}/libeckit_mpi.so.0d  /usr/lib/${DEB_HOST_MULTIARCH}/libeckit_mpi.so
 /usr/lib/${DEB_HOST_MULTIARCH}/libeckit_geometry.so.0d  /usr/lib/${DEB_HOST_MULTIARCH}/libeckit_geometry.so
