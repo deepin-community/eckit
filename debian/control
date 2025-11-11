@@ -6,6 +6,7 @@ Uploaders: Alphagocc <alphagocc@163.com>
 Build-Depends: debhelper (>= 11), 
   architecture-is-64-bit,
   dh-buildinfo, 
+  dh-exec,
   ecbuild (>= 3.6.1-1~),
   chrpath,
   flex,
